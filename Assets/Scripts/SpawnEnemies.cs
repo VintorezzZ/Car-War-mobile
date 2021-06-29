@@ -49,7 +49,6 @@ public class SpawnEnemies : MonoBehaviour
         {
             Instantiate(enemiesList[i], spawnPool[i].position, spawnPool[i].rotation);
             //TODO pool
-            sddsdd
         }
     }
 
