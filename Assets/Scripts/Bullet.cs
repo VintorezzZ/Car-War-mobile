@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
             Destroy(go, 1f);
             hit = true;
 
-            Health hp = collision.gameObject.GetComponent<Health>();
+            EntityCar hp = collision.gameObject.GetComponent<EntityCar>();
             if (hp != null)
             {
                  hp.GetDamage(damage);          
