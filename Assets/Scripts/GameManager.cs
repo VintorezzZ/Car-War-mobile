@@ -68,21 +68,20 @@ public class GameManager : MonoBehaviour
         {        
             if (!pause)
             {
-                pause = true;
-                Pause_On();
+                EnablePause();
             }
             else
             {
-                pause = false;
-                Pause_Off();
+                DisablePause();
             }
         }
 
         UpdateUI();
     }
 
-    public void Pause_On()
+    public void EnablePause()
     {
+        pause = true;
         SoundManager.instance.pauseMute = true;
         //Cursor.lockState = CursorLockMode.None;
         optionsPanel.SetActive(true);
@@ -95,8 +94,9 @@ public class GameManager : MonoBehaviour
         MuteAllSounds();
     }
 
-    public void Pause_Off()
+    public void DisablePause()
     {
+        pause = false;
         SoundManager.instance.pauseMute = false;
         //Cursor.lockState = CursorLockMode.Locked;
         optionsPanel.SetActive(false);
