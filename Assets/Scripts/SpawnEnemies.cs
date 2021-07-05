@@ -40,7 +40,7 @@ public class SpawnEnemies : MonoBehaviour
             _SpawnEnemies();
         }
 
-        GameManager.instance.UpdateTimer(timer);
+        GameManager.Instance.UpdateTimer(timer);
     }
 
     void _SpawnEnemies()

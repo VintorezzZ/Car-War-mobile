@@ -3,23 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-    public SoundManager soundManager;
-
-    public GameObject deathUI;
-    public GameObject optionsPanel;
-    public GameObject whilePlayPanel;
-    public GameObject optionsButton;
-    public Text scoreText;
-    public Text deathScoreText;
-    public Text deadCountText;
-    public Text timeText;
-    public Text ammoText;
-    public Slider sensSlider;
+    public static GameManager Instance;
+    public AudioController audioController;
+    
     public float sens = 100;
 
     private int points;
@@ -29,16 +20,16 @@ public class GameManager : MonoBehaviour
 
     public MMFeedbacks shakeFeedback;
     
-    private bool gameover = false;
+    private bool _gameover = false;
     public bool pause = false;
     //private bool mute;
 
 
     private void Awake()
     {
-        if (!instance)
+        if (!Instance)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -48,9 +39,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 300;
-        Instantiate(soundManager);
-        SoundManager.instance.pauseMute = false;
-        SoundManager.instance.MuteAllSounds();
+        
+        if (audioController)
+        {
+            Instantiate(audioController);
+            AudioController.Instance.init();
+        }
+        
         points = 0;
         Time.timeScale = 1;
         //if (SceneManager.GetActiveScene().name == "Start")        
@@ -61,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (gameover)
+        if (_gameover)
             return;
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -75,20 +70,18 @@ public class GameManager : MonoBehaviour
                 DisablePause();
             }
         }
-
-        UpdateUI();
     }
 
     public void EnablePause()
     {
         pause = true;
-        SoundManager.instance.pauseMute = true;
+        AudioController.Instance.pauseMute = true;
         //Cursor.lockState = CursorLockMode.None;
-        optionsPanel.SetActive(true);
-        whilePlayPanel.SetActive(false);
+        UIController.Instance.optionsPanel.SetActive(true);
+        UIController.Instance.whilePlayPanel.SetActive(false);
         ChangeTimeScale();
 
-        if (SoundManager.instance.globalMute)
+        if (AudioController.Instance.globalMute)
             return;
 
         MuteAllSounds();
@@ -97,13 +90,13 @@ public class GameManager : MonoBehaviour
     public void DisablePause()
     {
         pause = false;
-        SoundManager.instance.pauseMute = false;
+        AudioController.Instance.pauseMute = false;
         //Cursor.lockState = CursorLockMode.Locked;
-        optionsPanel.SetActive(false);
-        whilePlayPanel.SetActive(true);
+        UIController.Instance.optionsPanel.SetActive(false);
+        UIController.Instance.whilePlayPanel.SetActive(true);
         ChangeTimeScale();
 
-        if (SoundManager.instance.globalMute)
+        if (AudioController.Instance.globalMute)
             return;
 
         MuteAllSounds();
@@ -141,46 +134,35 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void SetDeathUI()
+    public void OnGameOver()
     {
-        gameover = true;
-        deathUI.SetActive(true);
-        whilePlayPanel.SetActive(false);
-        optionsPanel.SetActive(false);
+        _gameover = true;
+        UIController.Instance.SetDeathUI();
         //Cursor.lockState = CursorLockMode.None;
     }
 
+    public void OnDestroyEnemy(int points)
+    {
+        CountPoints(points);
+        PlayFeedbacks();
+        UIController.Instance.SetScoreText(points, deadCount);
+    }
     public void CountPoints(int _points)
     {
         points += _points;
         deadCount++;
     }
 
-    void UpdateUI()
-    {
-        try
-        {
-            scoreText.text = "Score  " + points.ToString();
-            deathScoreText.text = "Score   " + points.ToString();
-            timeText.text = "Next wave    \n" + time.ToString("0");
-            ammoText.text = ammo.ToString() + "  Ammo";
-            deadCountText.text = "Cars destroyed   " + deadCount.ToString();
-        }
-        catch (System.Exception)
-        {
-            Debug.Log("Need to fix this");
-        }
-       
-    }
-
     public void UpdateTimer(float _time)
     {
         time = _time;
+        UIController.Instance.timeText.text = "Next wave    \n" + time.ToString("0");
     }
 
     public void UpdateAmmo(int _ammo)
     {
         ammo = _ammo;
+        UIController.Instance.ammoText.text = ammo.ToString() + "  Ammo";
     }
 
     public void PlayFeedbacks()
@@ -190,21 +172,21 @@ public class GameManager : MonoBehaviour
 
     public void MuteBgMusic()
     {
-        SoundManager.instance.MuteBgMusic();
+        AudioController.Instance.MuteBgMusic();
     }
 
     public void MuteAllSounds()
     { 
-        SoundManager.instance.MuteAllSounds();    
+        AudioController.Instance.MuteAllSounds();    
     }
 
     public void GlobalMute()
     {
-        SoundManager.instance.globalMute = !SoundManager.instance.globalMute;  
+        AudioController.Instance.globalMute = !AudioController.Instance.globalMute;  
     }
 
     public void SetSensetivity()
     {
-        sens = sensSlider.value;
+        sens = UIController.Instance.sensSlider.value;
     }
 }

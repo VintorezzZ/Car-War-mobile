@@ -5,7 +5,7 @@ public class ClientCar : BaseCar
     public override void GetDamage(int damage)
     {
         base.GetDamage(damage);
-        GameManager.instance.SetDeathUI();
+        GameManager.Instance.OnGameOver();
     }
     
     private void OnCollisionEnter(Collision collision)

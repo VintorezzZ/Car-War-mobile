@@ -52,12 +52,12 @@ public class Machinegun : MonoBehaviour
         //}
 
         UpdateAmmo();
-        GameManager.instance.UpdateAmmo(currentAmmo);
+        GameManager.Instance.UpdateAmmo(currentAmmo);
     }
 
     void RotateGun()
     {
-        gunAngle += Input.GetAxis("Mouse X") * GameManager.instance.sens * Time.deltaTime;
+        gunAngle += Input.GetAxis("Mouse X") * GameManager.Instance.sens * Time.deltaTime;
         gunAngle = Mathf.Clamp(gunAngle,-90,90);
         gun.localRotation = Quaternion.AngleAxis(gunAngle, Vector3.up);
     }

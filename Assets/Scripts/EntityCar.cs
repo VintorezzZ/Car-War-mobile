@@ -5,8 +5,7 @@
      [SerializeField] private int pointsToAdd;
      public override void GetDamage(int damage)
      {
-         GameManager.instance.CountPoints(pointsToAdd);
-         GameManager.instance.PlayFeedbacks();
+         GameManager.Instance.OnDestroyEnemy(pointsToAdd);
          base.GetDamage(damage);
      }
      

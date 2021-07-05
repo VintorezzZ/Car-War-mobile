@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class AudioController : MonoBehaviour
 {
-    public static SoundManager instance;
+    public static AudioController Instance;
 
     public bool pauseMute = false;
     public bool globalMute = true;
@@ -15,9 +15,9 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        if (!instance)
+        if (!Instance)
         {
-            instance = this;
+            Instance = this;
         } 
 
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Music");
@@ -58,5 +58,10 @@ public class SoundManager : MonoBehaviour
         }
 
     }
- 
+
+    public void init()
+    {
+        pauseMute = false;
+        MuteAllSounds();
+    }
 }
