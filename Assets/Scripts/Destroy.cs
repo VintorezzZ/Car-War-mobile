@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Destroy : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private PoolItem _selfPoolItem;
     void Start()
     {
-        Destroy(this.gameObject, 3f);
+        _selfPoolItem = GetComponent<PoolItem>();
+
+        StartCoroutine(DeathCoroutine(3f));
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator DeathCoroutine(float timeToDeath)
     {
-        
+        yield return new WaitForSeconds(timeToDeath);
+        PoolManager.Return(_selfPoolItem);
     }
 }
