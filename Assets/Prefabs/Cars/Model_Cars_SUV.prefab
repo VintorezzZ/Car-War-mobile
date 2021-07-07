@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 6263495715085755326}
   m_Layer: 11
   m_Name: COM
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 6263495715085758498}
   m_Layer: 11
   m_Name: Model_Cars_SUV
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 6263495715079009966}
   m_Layer: 11
   m_Name: LB_Wheel
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 6263495715085821098}
   m_Layer: 11
   m_Name: Exhausts
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -471,7 +471,7 @@ GameObject:
   - component: {fileID: 6263495715087590132}
   m_Layer: 11
   m_Name: RB_Wheel
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 6263495715074572890}
   m_Layer: 11
   m_Name: HoodCamera
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 6263495715087781704}
   m_Layer: 11
   m_Name: RF_Wheel
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -921,7 +921,7 @@ GameObject:
   - component: {fileID: 6263495715078945898}
   m_Layer: 11
   m_Name: RCCExhaust
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: -7310811918437815874, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5738,7 +5738,7 @@ GameObject:
   - component: {fileID: 6263495715085834846}
   m_Layer: 11
   m_Name: Lights
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5778,7 +5778,7 @@ GameObject:
   - component: {fileID: 6263495715087837102}
   m_Layer: 11
   m_Name: LF_Wheel
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5862,7 +5862,7 @@ GameObject:
   - component: {fileID: 6294672834724154052}
   m_Layer: 11
   m_Name: RCCExhaustFlame
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: -7310811918437815874, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10615,7 +10615,7 @@ GameObject:
   - component: {fileID: 6263495715079022796}
   m_Layer: 11
   m_Name: LF_Wheel
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10822,7 +10822,7 @@ GameObject:
   - component: {fileID: 6263495715078955804}
   m_Layer: 11
   m_Name: Wheel Camera
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10994,7 +10994,7 @@ GameObject:
   - component: {fileID: 6263495715087596458}
   m_Layer: 11
   m_Name: LB_Wheel
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11075,7 +11075,7 @@ GameObject:
   - component: {fileID: 6263495715078953676}
   m_Layer: 11
   m_Name: Chassis
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11380,7 +11380,7 @@ GameObject:
   - component: {fileID: 6263495715083306182}
   m_Layer: 11
   m_Name: Car_Body
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11478,7 +11478,7 @@ GameObject:
   - component: {fileID: 8018066734539496011}
   m_Layer: 11
   m_Name: Model_Cars_SUV
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12040,7 +12040,7 @@ MonoBehaviour:
   deformableMeshFilters: []
   damageFilter:
     serializedVersion: 2
-    m_Bits: 4294966783
+    m_Bits: 6656
   randomizeVertices: 1
   damageRadius: 0.5
   repairNow: 0
@@ -12106,7 +12106,7 @@ MonoBehaviour:
   sideRayLength: 40
   obstacleLayers:
     serializedVersion: 2
-    m_Bits: 4294965448
+    m_Bits: 6144
   limitSpeed: 0
   maximumSpeed: 100
   smoothedSteer: 0
@@ -12129,7 +12129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  expl: {fileID: 7575587399278285863, guid: 5cbd3b967641bc94f9582c32245b6cde, type: 3}
   pointsToAdd: 10
 --- !u!1 &6263495715085590562
 GameObject:
@@ -12142,7 +12141,7 @@ GameObject:
   - component: {fileID: 6263495715085756922}
   m_Layer: 11
   m_Name: Wheel Models
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12176,7 +12175,7 @@ GameObject:
   - component: {fileID: 6263495715085841924}
   m_Layer: 11
   m_Name: Wheel Colliders
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12212,7 +12211,7 @@ GameObject:
   - component: {fileID: 6263495715079050232}
   m_Layer: 11
   m_Name: RF_Wheel
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12292,7 +12291,7 @@ GameObject:
   - component: {fileID: 6263495715078960592}
   m_Layer: 11
   m_Name: RB_Wheel
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

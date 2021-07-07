@@ -1031,7 +1031,7 @@ MonoBehaviour:
   deformableMeshFilters: []
   damageFilter:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 6656
   randomizeVertices: 1
   damageRadius: 0.5
   repairNow: 0
@@ -1136,7 +1136,7 @@ MonoBehaviour:
   sideRayLength: 80
   obstacleLayers:
     serializedVersion: 2
-    m_Bits: 4294965448
+    m_Bits: 6144
   limitSpeed: 0
   maximumSpeed: 100
   smoothedSteer: 1
@@ -1159,7 +1159,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  expl: {fileID: 7575587399278285863, guid: 5cbd3b967641bc94f9582c32245b6cde, type: 3}
   pointsToAdd: 10
 --- !u!1 &3723837979070475820
 GameObject:

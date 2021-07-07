@@ -2145,7 +2145,6 @@ public class RCC_CarControllerV3 : MonoBehaviour {
 		}
 		
 	}
-
 	/// <summary>
 	/// Raises the collision enter event.
 	/// </summary>

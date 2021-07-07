@@ -37,7 +37,7 @@ public class SpawnManager : MonoBehaviour
         if (timer <= 0) 
         {
             timer = 10;
-            SpawnEnemies();
+            //SpawnEnemies();
         }
 
         GameManager.Instance.UpdateTimer(timer);

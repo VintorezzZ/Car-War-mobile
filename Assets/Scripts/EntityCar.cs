@@ -3,21 +3,26 @@
  public class EntityCar : BaseCar
  {
      [SerializeField] private int pointsToAdd;
-     public override void GetDamage(int damage)
+     public override void GetDamage(BaseCar player, Collision collision)
      {
-         GameManager.Instance.OnDestroyEnemy(pointsToAdd);
-         base.GetDamage(damage);
+         base.GetDamage(player, collision);
      }
      
      private void OnCollisionEnter(Collision collision)
      {
          if (collision.transform.CompareTag("Wall"))
          {
-             GetDamage(maxHealth);
+             GetDamage(this, collision);
          }
          else if (collision.transform.TryGetComponent(out EntityCar entityCar))
          {
-             entityCar.GetDamage(maxHealth);
+             GetDamage(this, collision);
+             //entityCar.GetDamage();
+             
+             // if (entityCar.Health == 0)
+             // {
+             //     GameManager.Instance.OnDestroyEnemy(pointsToAdd);
+             // }
          }    
      }
  }

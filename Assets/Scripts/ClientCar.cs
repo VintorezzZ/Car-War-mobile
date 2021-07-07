@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class ClientCar : BaseCar
 {
-    public override void GetDamage(int damage)
+    public override void GetDamage(BaseCar player, Collision collision)
     {
-        base.GetDamage(damage);
-        GameManager.Instance.OnGameOver();
+        base.GetDamage(player, collision);
+        
+        if (Health == 0)
+        {
+            GameManager.Instance.OnGameOver();   
+        }
     }
     
     private void OnCollisionEnter(Collision collision)
@@ -16,16 +20,18 @@ public class ClientCar : BaseCar
             if(godMode)
                 return;
             
-            GetDamage(maxHealth);
+            GetDamage(this, collision);
         }
         else if (collision.transform.TryGetComponent(out EntityCar entityCar))
         {
-            entityCar.GetDamage(maxHealth);
+            
+            
+            //entityCar.GetDamage(this, collision);
             
             if(godMode)
                 return;
             
-            GetDamage(maxHealth);
+            GetDamage(this, collision);
         }
     }
 
@@ -34,6 +40,13 @@ public class ClientCar : BaseCar
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             godMode = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            var rcc = GetComponent<RCC_CarControllerV3>();
+            // rcc.repairNow = true;
+            // rcc.repaired = false;
+            // rcc.Repair();
         }
     }
 }

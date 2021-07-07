@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
             EntityCar hp = collision.gameObject.GetComponent<EntityCar>();
             if (hp != null)
             {
-                 hp.GetDamage(damage);          
+                 //hp.GetDamage(damage);          
             }
         }
     }
