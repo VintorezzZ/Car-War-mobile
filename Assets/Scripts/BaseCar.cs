@@ -10,9 +10,13 @@ public abstract class BaseCar : MonoBehaviour
 
     public HealthComponent HealthComponent => _healthComponent;
 
-    protected void Start()
+    protected void Awake()
     {
         _healthComponent = GetComponent<HealthComponent>();
+    }
+
+    private void OnEnable()
+    {
         Subscribe();
     }
 
