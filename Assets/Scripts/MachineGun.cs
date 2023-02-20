@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Machinegun : MonoBehaviour
+[RequireComponent(typeof(AudioSource))]
+public class MachineGun : MonoBehaviour
 {
     public Transform gun;
     public Transform barrel;
@@ -11,7 +11,7 @@ public class Machinegun : MonoBehaviour
     public float barrelSpeed;
     private float gunAngle;
     private float barrelAngle;
-    public GameObject bullet;
+    public Projectile bullet;
     public Transform barrelL;
     public Transform barrelR;
     public float bulletSpeed;
@@ -19,37 +19,27 @@ public class Machinegun : MonoBehaviour
     private float fireRate = 5f;
     public AudioClip shotSound;
     public AudioSource audioSource;
-    public ParticleSystem shootVFX;
+    [SerializeField] private ParticleSystem _shootEffect;
 
     private int currentAmmo = 30;
     private float timer;
 
-
-    private void Start()
-    {
-        
-    }
     private void Update()
     {        
         //RotateGun();
         //RotateBarrel();
 
-        //if (!GameManager.instance.pause)
-        //{
-        //    if (EventSystem.current.IsPointerOverGameObject())
-        //        return;
-
-        //    if (Time.time > nextTimeToFire)
-        //    {
-        //        nextTimeToFire = Time.time + 1f / fireRate;
-        //        if (currentAmmo > 0)
-        //        {
-        //            Shoot();
-        //        }                       
-
-        //    }
-
-        //}
+        if (!GameManager.Instance.pause)
+        {
+            if (Time.time > nextTimeToFire)
+            {
+                nextTimeToFire = Time.time + 1f / fireRate;
+                if (currentAmmo > 0)
+                {
+                    Shoot();
+                }
+            }
+        }
 
         UpdateAmmo();
         GameManager.Instance.UpdateAmmo(currentAmmo);
@@ -71,30 +61,15 @@ public class Machinegun : MonoBehaviour
 
     void Shoot()
     {        
-        GameObject bulletInstanceR;
-        GameObject bulletInstanceL;
+        var bulletInstanceL = Instantiate(bullet, barrelL.position, Quaternion.identity);
+        bulletInstanceL.Rigidbody.AddForce(barrelL.forward * bulletSpeed);;
 
-        //bulletInstanceR = Instantiate(bullet, barrelR.position, Quaternion.identity) as GameObject;
-        bulletInstanceL = Instantiate(bullet, barrelL.position, Quaternion.identity) as GameObject;
-
-        //Rigidbody bulletRbR;
-        Rigidbody bulletRbL;
-
-       // bulletRbR = bulletInstanceR.GetComponent<Rigidbody>();
-        bulletRbL = bulletInstanceL.GetComponent<Rigidbody>();
-
-       // bulletRbR.AddForce(barrelR.forward * bulletSpeed);
-        bulletRbL.AddForce(barrelL.forward * bulletSpeed);
-
-       // Destroy(bulletInstanceR, 10f);
-        Destroy(bulletInstanceL, 10f);
+        Destroy(bulletInstanceL, 5f);
 
         currentAmmo--;
 
-
-
+        _shootEffect.Play();
         audioSource.PlayOneShot(shotSound);
-        shootVFX.Play(shootVFX);
     }
 
     void UpdateAmmo()
@@ -111,5 +86,4 @@ public class Machinegun : MonoBehaviour
             currentAmmo = 0;
         }
     }
-
 }

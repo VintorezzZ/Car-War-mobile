@@ -2,46 +2,67 @@
 using DefaultNamespace;
 using UnityEngine;
 
+[RequireComponent(typeof(HealthComponent))]
 public abstract class BaseCar : MonoBehaviour
 {
-    private HealthController _healthController = new HealthController();
-    
+    private HealthComponent _healthComponent;
     private PoolItem _selfPoolItem;
-  
-    private int _health;
-    public int Health => _health;
-    
-    [SerializeField] protected int maxHealth;
-    protected bool godMode;
-    private void Start()
+
+    public HealthComponent HealthComponent => _healthComponent;
+
+    protected void Start()
     {
-        _health = maxHealth;
-        _selfPoolItem = GetComponent<PoolItem>();
+        _healthComponent = GetComponent<HealthComponent>();
+        Subscribe();
     }
 
-    public virtual void GetDamage(BaseCar player, Collision collision)
+    protected virtual void OnDamageTaken(float damage)
     {
-        if (player is ClientCar)
-        {
-            _healthController.CalculateDamage(player, collision);
-        }
-        //_health -= damage;
-        if (_health <= 0)
-        {
-            _health = 0;
-            var explosionFx = PoolManager.Get(PoolType.Explosion_fx);
-            explosionFx.gameObject.SetActive(true);
-            explosionFx.transform.position = transform.position;
-            explosionFx.transform.rotation = transform.rotation;
+        if (HealthComponent.Health > 0)
+            return;
 
-            if (_selfPoolItem)
-            {          
-                PoolManager.Return(_selfPoolItem);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+        var explosionFx = PoolManager.Get(PoolType.Explosion_fx);
+        explosionFx.transform.position = transform.position;
+        explosionFx.transform.rotation = transform.rotation;
+        explosionFx.gameObject.SetActive(true);
+
+        if (_selfPoolItem)
+        {
+            PoolManager.Return(_selfPoolItem);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    protected virtual void OnCollisionEnter(Collision collision)
+    {
+        var damage =DamageCalculator.CalculateDamage(this, collision);
+
+        if (collision.transform.CompareTag("Wall"))
+        {
+            _healthComponent.TakeDamage(damage);
+        }
+        else if (collision.transform.TryGetComponent(out IDamageable damageable))
+        {
+            damageable.TakeDamage(damage);
+            _healthComponent.TakeDamage(damage);
+        }
+    }
+
+    protected virtual void Subscribe()
+    {
+        _healthComponent.DamageTaken += OnDamageTaken;
+    }
+
+    protected virtual void UnSubscribe()
+    {
+        _healthComponent.DamageTaken -= OnDamageTaken;
+    }
+
+    private void OnDisable()
+    {
+        UnSubscribe();
     }
 }
