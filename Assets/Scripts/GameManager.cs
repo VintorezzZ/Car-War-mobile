@@ -1,10 +1,8 @@
 ﻿using MoreMountains.Feedbacks;
-using System.Collections;
-using System.Collections.Generic;
+using Services;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -36,6 +34,7 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
     }
+
     void Start()
     {
         Application.targetFrameRate = 300;

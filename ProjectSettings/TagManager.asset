@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Enemy
   - Music
+  - InitialPoint
   layers:
   - Default
   - TransparentFX

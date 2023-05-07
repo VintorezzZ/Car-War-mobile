@@ -21,7 +21,7 @@ public class MachineGun : MonoBehaviour
     public AudioSource audioSource;
     [SerializeField] private ParticleSystem _shootEffect;
 
-    private int currentAmmo = 30;
+    public int currentAmmo = 0;
     private float timer;
 
     private void Update()
