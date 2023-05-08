@@ -12,7 +12,7 @@ public abstract class BaseCar : MonoBehaviour
     public HealthComponent HealthComponent => _healthComponent;
     public Rigidbody Rigidbody => _rigidbody;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         _healthComponent = GetComponent<HealthComponent>();
         _rigidbody = GetComponent<Rigidbody>();

@@ -1,16 +1,16 @@
 ﻿using CodeBase.Logic;
-using Services;
+using infrastructure.Service;
+using infrastructure.States;
 
 namespace infrastructure
 {
     public class Game
     {
-        public static IInputService InputService;
         public readonly GameStateMachine StateMachine;
 
         public Game(ICoroutineRunner coroutineRunner, LoadingCurtain loadingCurtain)
         {
-            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), loadingCurtain);
+            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), loadingCurtain, new ServicesLocator());
         }
     }
 }

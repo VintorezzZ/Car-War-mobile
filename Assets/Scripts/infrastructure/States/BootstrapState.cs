@@ -1,22 +1,28 @@
-﻿using Services;
+﻿using infrastructure.AssetManagement;
+using infrastructure.Factory;
+using infrastructure.Service;
+using Services;
 
-namespace infrastructure
+namespace infrastructure.States
 {
     public class BootstrapState : IState
     {
         private const string INITIAL = "Initial";
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
+        private readonly ServicesLocator _services;
 
-        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader)
+        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, ServicesLocator services)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
+            _services = services;
+
+            RegisterServices();
         }
 
         public void Enter()
         {
-            RegisterServices();
             _sceneLoader.Load(INITIAL, EnterLoadLevel);
         }
 
@@ -29,10 +35,12 @@ namespace infrastructure
 
         private void RegisterServices()
         {
-            Game.InputService = RegisterInputService();
+            _services.RegisterSingle<IInputService>(CreateInputService());
+            _services.RegisterSingle<IAssets>(new AssetProvider());
+            _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssets>()));
         }
 
-        private IInputService RegisterInputService()
+        private IInputService CreateInputService()
         {
             return new InputService();
         }
