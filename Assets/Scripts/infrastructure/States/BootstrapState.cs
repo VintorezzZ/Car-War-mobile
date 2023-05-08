@@ -1,4 +1,5 @@
-﻿using infrastructure.AssetManagement;
+﻿using System;
+using infrastructure.AssetManagement;
 using infrastructure.Factory;
 using infrastructure.Service;
 using Services;
@@ -10,9 +11,9 @@ namespace infrastructure.States
         private const string INITIAL = "Initial";
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
-        private readonly ServicesLocator _services;
+        private readonly IDIContainer _services;
 
-        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, ServicesLocator services)
+        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, IDIContainer services)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
@@ -35,14 +36,16 @@ namespace infrastructure.States
 
         private void RegisterServices()
         {
-            _services.RegisterSingle<IInputService>(CreateInputService());
-            _services.RegisterSingle<IAssets>(new AssetProvider());
-            _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssets>()));
+            _services.Register<IInputService>(CreateInputService());
+            _services.Register<IAssets>(typeof(AssetProvider));
+            _services.Register<IGameFactory>(typeof(GameFactory));
+
+            _services.Build();
         }
 
-        private IInputService CreateInputService()
+        private Type CreateInputService()
         {
-            return new InputService();
+            return typeof(InputService);
         }
     }
 }

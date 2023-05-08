@@ -10,7 +10,7 @@ namespace infrastructure
 
         public Game(ICoroutineRunner coroutineRunner, LoadingCurtain loadingCurtain)
         {
-            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), loadingCurtain, new ServicesLocator());
+            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), loadingCurtain, new DIContainer());
         }
     }
 }

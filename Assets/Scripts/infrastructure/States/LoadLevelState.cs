@@ -1,5 +1,6 @@
 ﻿using CodeBase.Logic;
 using infrastructure.Factory;
+using infrastructure.Service;
 using UnityEngine;
 
 namespace infrastructure.States
@@ -11,7 +12,13 @@ namespace infrastructure.States
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _loadingCurtain;
-        private readonly IGameFactory _gameFactory;
+        private IGameFactory _gameFactory;
+
+        [Inject]
+        private void Inject(IGameFactory gameFactory)
+        {
+            _gameFactory = gameFactory;
+        }
 
         public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain, IGameFactory gameFactory)
         {

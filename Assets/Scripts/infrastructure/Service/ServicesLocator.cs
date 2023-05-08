@@ -1,18 +1,22 @@
-﻿namespace infrastructure.Service
+﻿using System;
+
+namespace infrastructure.Service
 {
-    public class ServicesLocator
+    public class ServicesLocator : IDIContainer
     {
-        private static ServicesLocator _instance;
-        public static ServicesLocator Container => _instance ??= new ServicesLocator();
+        private static IDIContainer _instance;
+        public static IDIContainer Container => _instance ??= new ServicesLocator();
 
-        public void RegisterSingle<TService>(TService implementation) where TService : IService =>
-            Implementation<TService>.ServiceInstance = implementation;
+        public void Register<TService>(TService implementation) where TService : IService =>
+            IDIContainer.Implementation<TService>.ServiceInstance = implementation;
 
-        public TService Single<TService>() where TService : IService => Implementation<TService>.ServiceInstance;
-
-        private static class Implementation<TService> where TService : IService
+        public void Register<TService>(Type implementation) where TService : IService
         {
-            public static TService ServiceInstance;
+
         }
+
+        public TService Resolve<TService>() where TService : IService => Single<TService>();
+        public TService Single<TService>() where TService : IService => IDIContainer.Implementation<TService>.ServiceInstance;
+        public void Build() { }
     }
 }

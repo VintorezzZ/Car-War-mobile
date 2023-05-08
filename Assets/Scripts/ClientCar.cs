@@ -4,11 +4,18 @@ using Services;
 public class ClientCar : BaseCar
 {
     private IInputService _input;
+
+    [Inject]
+    private void Inject(IInputService inputService)
+    {
+        _input = inputService;
+    }
+
     protected override void Awake()
     {
         base.Awake();
-        
-        _input = ServicesLocator.Container.Single<IInputService>();
+
+        //_input = ServicesLocator.Container.Resolve<IInputService>();
     }
 
     private void Update()

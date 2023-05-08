@@ -1,4 +1,5 @@
 ﻿using infrastructure.AssetManagement;
+using infrastructure.Service;
 using UnityEngine;
 
 namespace infrastructure.Factory
@@ -7,6 +8,7 @@ namespace infrastructure.Factory
     {
         private readonly IAssets _assets;
 
+        [Inject]
         public GameFactory(IAssets assets)
         {
             _assets = assets;

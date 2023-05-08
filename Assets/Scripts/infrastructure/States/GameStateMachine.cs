@@ -11,7 +11,7 @@ namespace infrastructure.States
         private readonly Dictionary<Type,IExitableState> _states;
         private IExitableState _activeState;
 
-        public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, ServicesLocator services)
+        public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, IDIContainer services)
         {
             _states = new Dictionary<Type, IExitableState>()
             {
